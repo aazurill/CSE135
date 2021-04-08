@@ -21,6 +21,6 @@ jobs:
             cd testdir
             git clone https://github.com/aazurill/CSE135.git
             rm ./var/www/*
-            cp -r ./CSE135/www/* /var/www
+            rsync -a ./CSE135/www/* /var/www
             rm -rf ./CSE135
             echo 'Deployment successful to digital ocean' 
