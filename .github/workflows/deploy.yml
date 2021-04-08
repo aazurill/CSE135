@@ -20,5 +20,6 @@ jobs:
             mkdir rsynchere
             cd testdir
             git clone https://github.com/aazurill/CSE135.git
-            rsync -a ./CSE135 ../rsynchere
+            rsync -a ./CSE135/* ../rsynchere
+            rm -rf ./CSE135
             echo 'Deployment successful to digital ocean' 
