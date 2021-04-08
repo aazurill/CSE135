@@ -16,6 +16,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }} # password
           script: |
             mkdir test 
+            mkdir secondtest
+            mkdir thirdtest
             cd test 
             git clone git@github.com:aazurill/CSE135.git 
             cp -r CSE135/ test
