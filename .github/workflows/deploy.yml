@@ -15,7 +15,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
           password: ${{ secrets.SSH_PASSWORD }} # password
           script: |
-            mkdir test 
             cd test
+            mkdir testdir
+            mkdir rsynchere
+            cd testdir
             git clone git@github.com:aazurill/CSE135.git 
             echo 'Deployment successful to digital ocean' 
