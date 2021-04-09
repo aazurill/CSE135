@@ -1,6 +1,5 @@
-# CSE135
+# CSE135 README
 
-CSE 135 Readme:
 
 Droplet hostname: CSE 135
 IP Address: 143.198.63.147
@@ -21,7 +20,6 @@ Website authentication username + password (Part 3 Step 4):
 Username: ethan
 Password: 123456
 
-Part 2:
 Description of GitHub Deployment:
 In order to enable github deploying on my project, what I did was add a GitHub action to a repository in my name containing the website files. Inside this action yaml file, what I did was specify that whenever there was a push to this specific repository, I would ssh into the DigitalOcean droplet containing the files for my personal website. I would make a git clone request to this repository, copy all the relevant files from the repo, and then rsync those files with those inside of relevant website folders inside of var/www/ to essentially “update” the websites.
 
