@@ -7,6 +7,8 @@
           $myObj->message = "Hello World from PHP";
           $myObj->ipAddress = $ip;
           $myObj->date = $date;
+          echo $myObj['date'];
+          
           $json_output = json_decode($myObj, true);
           echo $json_output;
         ?>
