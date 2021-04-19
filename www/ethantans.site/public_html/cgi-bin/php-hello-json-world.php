@@ -5,5 +5,6 @@
             $myObj->message = "Hello World from PHP";
             $myObj->ipAddress = $ip;
             $myObj->date = $date;
+            header('Content-Type: text/html');
             echo $myObj;
         ?>
