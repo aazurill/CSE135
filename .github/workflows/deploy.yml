@@ -23,6 +23,6 @@ jobs:
             rm ./var/www/*
             rsync -a ./CSE135/www/* /var/www
             rm -rf ./CSE135
-            cd /var/www/ethantans.site/publici_html/cgi-bin/
+            cd /var/www/ethantans.site/public_html/cgi-bin/
             chmod a+x ./*
             echo 'Deployment successful to digital ocean' 
