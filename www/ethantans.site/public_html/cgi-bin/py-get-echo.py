@@ -1,7 +1,10 @@
-import os
+import requests
+URL = "https://google.com"
+r = requests.get(url=URL)
+data = r.json()
 print("Content-type: text/html\n")
 print('<html>')
 print('<body>')
-print("Query String: " + os.environ['QUERY_STRING')
+print(data)
 print('</body>')
 print('</html>')
