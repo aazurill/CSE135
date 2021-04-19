@@ -4,13 +4,9 @@
           $ip = $_SERVER['REMOTE_ADDR'];
           date_default_timezone_set('America/Los_Angeles');
           $date = date('m/d/Y h:i:s a', time());
-          $myObj->message = "Hello World from PHP";
-          $myObj->ipAddress = $ip;
-          $myObj->date = $date;
-          echo $myObj['date'];
-          
-          $json_output = json_decode($myObj, true);
-          echo $json_output;
+          $message = "Hello World from PHP";
+          $Obj = array("message"=>$message, "date"=>$date, "ipAddress"=>$ip);
+          echo json_encode($Obj);
         ?>
     </body>
 </html>
