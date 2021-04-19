@@ -1,7 +1,8 @@
 <html>
     <body>
         <?php
-          echo "<p><b>Query String</b>$_SERVER['QUERY_STRING']</p>";
+          $get = $_SERVER['QUERY_STRING'];
+          echo "<p><b>Query String</b>$get</p>";
         ?>
     </body>
 </html>
