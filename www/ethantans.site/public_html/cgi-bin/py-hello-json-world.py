@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import socket
 import json
-from datetime improt date
+from datetime import date
 hostname = socket.gethostname()
 ip = socket.gethostbyname(hostname)
 

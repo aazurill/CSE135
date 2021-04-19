@@ -7,8 +7,8 @@ print('<title>Env Variables</title>')
 print('</head>')
 print('<body>')
 print('<h2>Environment Variables</h2>')
-for k, v in os.environ.items():
-    print(f'{k}={v}')
 print('<h2>Server Variables</h2>')
+for k, v in os.environ.items():
+    print(f'<b>{k}<b>: {v}')
 print('</body>')
 print('</html>')
