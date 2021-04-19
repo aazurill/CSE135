@@ -1,8 +1,3 @@
-<html>
-    <head>
-        <title>Hello PHP World</title>
-    </head>
-    <body>
         <?php
             $ip = $_SERVER['REMOTE_ADDR'];
             date_default_timezone_set('America/Los_Angeles');
@@ -13,5 +8,3 @@
             header('Content-Type: application/json');
             echo $myObj;
         ?>
-    </body>
-</html>
