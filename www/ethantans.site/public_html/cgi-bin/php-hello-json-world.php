@@ -5,7 +5,7 @@
     <body>
         <?php
           $ip = $_SERVER['REMOTE_ADDR'];
-          $date = echo getdate();
+          $date = date('m/d/Y h:i:s a', time());
           $myObj->message = "Hello World from PHP";
           $myObj->ipAddress = $ip;
           $myObj->date = $date;
