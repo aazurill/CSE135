@@ -5,9 +5,8 @@
     <body>
         <?php
             echo "<p>Hello World!</p>";
-            echo "<p>Current Time: $date</p>";
-            $ip_address = gethostbyname("https://ethantans.site");
-            echo "<p>Your IP Address: $ip_address</p>";
+            echo "<p>Current Time: <?=date('d F Y')?></p>";
+            echo "<p>Your IP Address: <?php echo $_SERVER['REMOTE_ADDR']?></p>";
         ?>
     </body>
 </html>
