@@ -9,5 +9,6 @@ print('<body>')
 print('<h2>Server Variables</h2>')
 for k, v in os.environ.items():
     print(f'<b>{k}</b>: {v}')
+    print()
 print('</body>')
 print('</html>')
