@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os
 envi = os.environ
-method = envi[REQUEST_METHOD]
-protocol = envi[PROTOCOL]
-query = envi[QUERY_STRING]
+method = envi['REQUEST_METHOD']
+protocol = envi['SERVER_PROTOCOL']
+query = envi['QUERY_STRING']
 r = requests.get('https://ethantans.site/cgi-bin/py-general-request-echo.py')
 body = r.content
 print("Content-type: text/html\n")
