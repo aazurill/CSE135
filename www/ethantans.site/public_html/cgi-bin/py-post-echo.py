@@ -3,7 +3,7 @@ import requests
 print("Content-type: text/html\n")
 URL = "http://google.com"
 myObj = {'hihihi':'byebyebye'}
-x = requests.post(url, data=myObj)
+x = requests.post(url=URL, data=myObj)
 
 print('<html>')
 print('<body>')
