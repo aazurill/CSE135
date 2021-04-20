@@ -7,6 +7,7 @@ x = requests.post(url=URL, data=myObj)
 
 print('<html>')
 print('<body>')
+print('<h1>Post Echo</h1>')
 print('<p>')
 print(x.request.body)
 print('</p>')
