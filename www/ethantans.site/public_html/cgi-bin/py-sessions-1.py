@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import cgi, cgitbform
+import cgi, cgitb
 form = cgi.FieldStorage()
 user = form.getvalue('username')
 print("Content-type: text/html\n")
