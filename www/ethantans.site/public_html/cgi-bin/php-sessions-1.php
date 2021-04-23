@@ -1,14 +1,13 @@
 <html>
   <body>
     <?php
-
+      $get = $_GET['varname'];
       session_start();
-      if($_SESSION['before']) {
-        $name = $_SESSION['user'];
+      if(empty($get)) {
+        $name = $_POST["username"];
       }
       else {
-        $name = $_POST["username"];
-        $_SESSION['user'] = $name;
+        $name = $get;
       }
     ?>
     <h1>Hello <?php echo $name; ?>!</h1>
