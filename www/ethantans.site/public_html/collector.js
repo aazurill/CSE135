@@ -140,7 +140,7 @@ document.addEventListener('keydown', function(event){
 //Sessioning:
 let id = Math.floor(Math.random() * 1000000);
 console.log("Session id: " + id);
-document.cookie = `sessionId=${id}`
+document.cookie = `sessionId=${id}`;
 
 
 // Idle time for period of 2 or more seconds
