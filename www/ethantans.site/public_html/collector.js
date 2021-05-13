@@ -1,5 +1,8 @@
 /* eslint-disable */
-function checkDummy()
+
+let idle = 0;
+let sessionId;
+function checkStylesheet()
 {
 	let val;
 	let el=document.getElementById("checkDummy");
@@ -8,144 +11,290 @@ function checkDummy()
 	else
 		val=el.style.marginTop
 
-	if(val=="1px")
+	if(val=="1px") {
 		console.log("Style Sheets Allowed");
-	else
+    stylesheet = 1;
+    return stylesheet;
+  }
+	else {
 		console.log("Style Sheets NOT Allowed");
+    stylesheet = 0;
+    return stylesheet;
+  }
+
 }
-// function images() {
-// 	let image = new Image();
-// 	image.src = 'clear.png';
-// 	image.onload = function() {
-// 		if (image.width > 0) {
-// 			return true;
-// 		}
-//     return false;
-// 	};
-// }
+
+(function noimg() {
+    var image = new Image();
+    image.onload = function() {
+      if (image.width > 0) {
+        document.documentElement.className += (document.documentElement.className != '') ? ' images-on' : 'images-on';
+      }
+    };
+    image.src = 'clear.png';
+  }());
+
 function checkImg() {
-  let htmltag = document.getElementsByTagName('html');
-  let htmlClass = htmltag.className;
   let imgOn = document.getElementsByClassName('images-on');
   if(imgOn.length != 0 ) {
     console.log("Images Allowed");
+    images = 1;
+    return images;
   }
   else {
     console.log("Images NOT Allowed");
+    images = 0;
+    return images;
   }
 }
-(function noimg() {
-	var image = new Image();
-	image.onload = function() {
-		if (image.width > 0) {
-			document.documentElement.className += (document.documentElement.className != '') ? ' images-on' : 'images-on';
-		}
-	};
-	image.src = 'clear.png';
-}());
-// function noimage() {
-//   if(img()) {
-//     console.log("Images Allowed");
-//   }
-//   else {
-//     console.log("Images NOT Allowed");
-//   }
-// }
-window.addEventListener('load', (event) => {
-  checkImg();
-  console.log('Collecting Static');
-  // Collect User Agent String
-  let userAgent = navigator.userAgent;
-  console.log("User Agent:" + userAgent);
-  // Collect User Language
-  let lang  = navigator.language;
-  console.log("Language: " + lang);
-  // Cookies ?
-  let noCookies = false;
-  if(navigator.cookieEnabled) noCookies = true;
-  console.log("Cookies Allowed: " + noCookies);
-  // Allow Javascript ?
 
-  // Allow images ?
+function getUserAgent() {
+  console.log("User Agent:" + navigator.userAgent);
+  return navigator.userAgent;
+}
 
-  /// Allow CSS ?
+function getLang() {
+  console.log("Language: " + navigator.language);
+  return navigator.language;
+}
 
-  checkDummy();
-  // User Screen Dimensions
-  let dimension = "Dimensions " + screen.width + "x" + screen.height;
+function getCookie() {
+  if(navigator.cookieEnabled) {
+    // console.log("Cookies Allowed: " + 1);
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function getScreenDim() {
+  let dimension = "Screen Dimensions " + screen.width + "x" + screen.height;
   console.log(dimension);
-  // Window Dimensions
+  let obj = {
+    screen_x : screen.width,
+    screen_y : screen.height
+  };
+  return obj;
+}
+
+function getWindowDim() {
   let windDimension = "Window Dimensions: " + window.innerWidth + "x" + window.innerHeight;
-  console.log(windDimension);
+  console.log(windDimension)
+  let obj = {
+    window_x : window.innerWidth,
+    window_y : window.innerHeight,
+  }
+  return obj;
+}
 
-
-  // Network connection type
+function getConn() {
   let connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   let conntype = "Connection Type: " + connection.effectiveType;
-  console.log(conntype);
-
-  // Timing of page load
-
-    // WHole timing Obj
-  let timeObj = window.performance.timing;
-  console.log("Time Obj: " + timeObj)
-    // When page start load
-  let loadStart = "Load Start: " + window.performance.timing.navigationStart;
-  console.log(loadStart);
-
-    // When page end load
-  let loadEnd = "Load End: " + window.performance.timing.domContentLoadedEventEnd;
-  console.log(loadEnd);
-    // Total load time (milliseconds)
-  let loadTime = window.performance.timing.domContentLoadedEventEnd- window.performance.timing.navigationStart;
-  console.log("Load time: " + loadTime);
-});
-function logMouseButton(e) {
-  if (typeof e === 'object') {
-    switch (e.button) {
-      case 0:
-        console.log('Left button clicked.');
-        break;
-      case 1:
-        console.log('Middle button clicked.');
-        break;
-      case 2:
-        console.log('Right button clicked.');
-        break;
-      default:
-        console.log(`Unknown button code: ${e.button}`);
-    }
-  }
+  console.log(conntype)
+  return connection.effectiveType;
 }
 
-// Mouse activity
-  // Cursor position
-  onmousemove = function(e){console.log("mouse location:", e.clientX, e.clientY)}
+function getTimeOb() {
+  let timeObj = window.performance.timing;
+  console.log("Time Obj: " + timeObj)
+  return timeObj;
+}
 
-  // Clicks (and which mouse button)
-  document.addEventListener('mouseup', logMouseButton);
+function getLoadStart() {
+  let loadStart = "Load Start: " + window.performance.timing.navigationStart;
+  console.log(loadStart);
+  return window.performance.timing.navigationStart;
+}
 
-  // Scroll (coords of thescroll)
-window.addEventListener("scroll", function(event) {
-    var top = this.scrollY,
-        left =this.scrollX;
-    console.log("Scroll Y: " + top + " Scroll X " + left);
-}, false);
-// Keybaord activity
-  // Key down or key up events
-document.addEventListener('keydown', function(event){
-  let key = event.keyCode;
-  console.log("Key " + key + " pressed");
-})
-//Sessioning:
-let id = Math.floor(Math.random() * 1000000);
-console.log("Session id: " + id);
-document.cookie = `sessionId=${id}`;
+function getLoadEnd() {
+  let loadEnd = "Load End: " + window.performance.timing.domContentLoadedEventEnd;
+  console.log(loadEnd);
+  return window.performance.timing.domContentLoadedEventEnd;
+}
+
+function getLoadTime() {
+  let loadTime = window.performance.timing.domContentLoadedEventEnd- window.performance.timing.navigationStart;
+  console.log("Load time: " + loadTime);
+  return window.performance.timing.domContentLoadedEventEnd- window.performance.timing.navigationStart;
+}
+
+window.addEventListener('load', (event) => {
+  console.log('Collecting Static');
+  const url = 'https://ethantans.site/api';
+
+  fetch(url, {
+      method: "GET", // "GET/POST"
+      headers: {
+          "Content-Type": "application/json"
+      },
+  })
+  .then(r => r.json())
+  .then(r => {
+    sessionId = r.sessionId;
+    console.log('Session ID: ' + r.sessionId) // You will get JSON response here.
+    let enterTime = new Date().getTime();
+    let currentPage = document.URL;
+
+    let statOb = {
+      sessionId: sessionId,
+      agentStr : getUserAgent(),
+      lang: getLang(),
+      cookies: getCookie(),
+      js: 1,
+      images: checkImg(),
+      css: checkStylesheet(),
+      screenDim: getScreenDim(),
+      windowDim: getWindowDim(),
+      network: getConn()
+    }
+    console.log(statOb);
+    postData('static', statOb)
+    .then(data => {
+      console.log(data);
+    });
+
+    let testOb = {
+      network : "hahahahah"
+    }
+
+    // TESTING PURPOSES - POST TO MONGO ACTIVITY UNDER TESTER
+    // postData('https://ethantans.site/api/activity/tUSb-EmTgRBMYxrgO8zhCPrfniVDr3Le', testOb)
+    // .then(data => {
+    //   console.log(data);
+    // });
 
 
-// Idle time for period of 2 or more seconds
-  // Record when break ended
-var inactivityTime = function () {
+
+    let loadObj = {
+      sessionId: sessionId,
+      load: getTimeOb(),
+      loadStart: getLoadStart(),
+      loadEnd: getLoadEnd(),
+      loadTime: getLoadTime()
+    }
+    console.log(loadObj);
+    postData('performance', loadObj)
+    .then(data => {
+      console.log(data);
+    });
+
+    document.addEventListener('keydown', function(event){
+      let key = event.keyCode;
+      let keyObj = {
+        sessionId: sessionId,
+        key: key
+      }
+      postData('activity', keyObj)
+      .then(data => {
+        console.log(keyObj);
+      });
+  })
+
+    document.addEventListener('mouseup', function(e) {
+      let clickObj;
+      if (typeof e === 'object') {
+        switch (e.button) {
+          case 0:
+            clickObj = {
+              sessionId: sessionId,
+              click: 'Left'
+            }
+            postData('activity', clickObj)
+              .then(data => {
+                console.log(data);
+              });
+            break;
+          case 1:
+            clickObj = {
+              sessionId: sessionId,
+              click: 'Middle'
+            }
+            postData('activity', clickObj)
+              .then(data => {
+                console.log(data);
+            });
+            break;
+          case 2:
+            clickObj = {
+              sessionId: sessionId,
+              click: 'Right'
+            }
+            postData('activity', clickObj)
+              .then(data => {
+                console.log(data);
+            });
+            break;
+          default:
+            clickObj = {
+              sessionId: sessionId,
+              click: 'Unknown'
+            }
+            postData('activity', clickObj)
+              .then(data => {
+                console.log(data);
+            });
+        }
+      }
+    })
+
+    window.addEventListener("scroll", function(event) {
+        let scrollObj = {
+          sessionId: sessionId,
+          scrollY: this.scrollY,
+          scrollX: this.scrollX
+        }
+        postData('activity', scrollObj)
+          .then(data => {
+            console.log(data);
+        });
+    }, false);
+
+    inactivityTime(sessionId);
+
+    window.addEventListener('beforeunload', function(e) {
+      let exitTime = new Date().getTime();
+      let activObj = {
+        sessionId: sessionId,
+        enter: enterTime,
+        exit: exitTime,
+        url: currentPage
+      }
+      postData('activity', activObj)
+       .then(data => {
+        console.log(data);
+      });
+    });
+
+    onmousemove = function(e){
+      var m_pos_x,m_pos_y;
+      let oldx = 0
+      let oldy = 0
+      window.onmousemove = function(e) {
+        m_pos_x = e.pageX;m_pos_y = e.pageY;
+      }
+      setInterval(function() {
+        if(oldx !== m_pos_x && oldy !== m_pos_y) {
+          let mouseObj = {
+            sessionId: sessionId,
+            mouse_x: m_pos_x,
+            mouse_y: m_pos_y
+          }
+         postData('activity', mouseObj)
+          .then(data => {
+            console.log(data);
+         });
+        }
+        oldx = m_pos_x;
+        oldy = m_pos_y
+
+      },500);
+    }
+  }).catch(error => console.error('Error', error))
+});
+
+
+var inactivityTime = function (sessionId) {
     var time;
     let idleStart = new Date();
     let starttime = idleStart.getTime();
@@ -163,37 +312,128 @@ var inactivityTime = function () {
     document.onkeydown = resetTimer;   // onkeypress is deprectaed
     document.addEventListener('scroll', resetTimer, true)
     function logout() {
-      console.log("IDLE");
       idle = true;
       idleStart = new Date();
       starttime = idleStart.getTime();
+      let idleObj = {
+        sessionId: sessionId,
+        status: 'IDLE',
+        time: starttime
+      }
+      postData('activity', idleObj)
+      .then(data => {
+        console.log(data);
+      });
     }
 
     function resetTimer() {
-      idleStart = new Date();
-      let endtime = idleStart.getTime();
-      let timer = endtime - starttime;
-      if(idle === true) {
-        console.log("END IDLE: " + timer);
+      if(idle) {
+        idleStart = new Date();
+        let idleEnd = idleStart.getTime() - starttime;
+        let endIdleObj = {
+          sessionId: sessionId,
+          status: 'ACTIVE',
+          idleLength: idleEnd,
+          idleEnd: idleStart.getTime()
+        }
+         postData('activity', endIdleObj)
+          .then(data => {
+            console.log(data);
+         });
+        console.log(endIdleObj)
       }
+      idleStart = new Date();
       clearTimeout(time);
       idle = false;
       time = setTimeout(logout, 2000)
     }
 };
-window.onload = function() {
-  inactivityTime();
+
+
+async function postData(route = '', data = {}) {
+  if(route === 'activity') {
+    url = 'https://ethantans.site/api/activity';
+  }
+  else if(route === 'static') {
+    url = 'https://ethantans.site/api/static';
+  }
+  else if(route === 'performance') {
+    url = 'https://ethantans.site/api/performance';
+  }
+  else {
+    url = route;
+  }
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function putData(route = '', data = {}) {
+  if(route === 'activity') {
+    url = 'https://ethantans.site/api/activity';
+  }
+  else if(route === 'static') {
+    url = 'https://ethantans.site/api/static';
+  }
+  else if(route === 'performance') {
+    url = 'https://ethantans.site/api/performance';
+  }
+  else {
+    url = route;
+  }
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
 }
 
 
-// When user entered page
-let d = new Date();
-console.log("User Enter Time: " + d.getTime());
-// When user left page
-window.addEventListener('beforeunload', function(e) {
-  let d = new Date();
-  console.log("User Exit Time: " + d.getTime());
-});
-// Which page user on
-console.log("User is on: " + document.URL);
-// Tie data to user session
+
+async function deleteData(route = '', data = {}) {
+  if(route === 'activity') {
+    url = 'https://ethantans.site/api/activity';
+  }
+  else if(route === 'static') {
+    url = 'https://ethantans.site/api/static';
+  }
+  else if(route === 'performance') {
+    url = 'https://ethantans.site/api/performance';
+  }
+  else {
+    url = route;
+  }
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: null
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
+
